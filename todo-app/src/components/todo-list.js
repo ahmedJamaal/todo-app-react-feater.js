@@ -1,64 +1,53 @@
-import {  Divider, List, Skeleton ,Button } from 'antd';
+import {   List ,Button } from 'antd';
 ///import { ToDoContext } from '../context/todo-context';
  
 import { DeleteOutlined } from '@ant-design/icons'
-import { useEffect, useState } from 'react';
-
-import InfiniteScroll from 'react-infinite-scroll-component';
-const TodoList = () => {
-  const [data, setData] = useState([]);
-
-  const loadMoreData = () => {
- fetch('http://localhost:3030/todo')
-      .then((res) => res.json())
-      .then((body) => {
-        setData([...data, ...body.data]);
-      
-      })
-      .catch(() => {
-       
-      });
+import axios from 'axios';
+import { useContext } from 'react';
+const TodoList = ({data,ViewTodo}) => {
+    const onDelete = async (id) => {
+        try {
+          axios.delete(`http://localhost:3030/todo/${id}`)
+          .then((data) => {
+              console.log(data);
+          /// fetchData();
+       })
+        } catch (error) {
+          console.log(error);
+        }
+      };
+    const onUpdate = async (todos) => {
+        try {
+           /// console.log(todo);
+            console.log(data);
+           this.state.displayTodo(todos);
+            
+          /*axios.delete(`http://localhost:3030/todo/${id}`)
+          .then((data) => {
+           fetchData();
+        })
+        */
+        } catch (error) {
+          console.log(error);
+        }
+      };
+  const items = () => {
+      console.log(data);
+    return data.map(todo => {
+      return    <List.Item key={todo._id}  size="small" style={{  cursor:"pointer"}}>
+      <List.Item.Meta onClick={() => ViewTodo(todo)}
+        title={todo.tittle}
+        description={todo.description}
+      />
+      <div>
+      <Button type="danger" shape="circle" onClick={() => onDelete(todo._id)}
+      icon={<DeleteOutlined />} size="large" />
+            </div>
+    </List.Item>
+    });
   };
 
-  useEffect(() => {
-    loadMoreData();
-  }, []);
-  return (
-    <div
-      id="scrollableDiv"
-      style={{
-        height: 700,
-        overflow: 'auto',
-        padding: '0 16px',
-        border: '1px solid rgba(140, 140, 140, 0.35)',
-      }}
-    >
-      <InfiniteScroll
-        dataLength={data.length}
-        next={loadMoreData}
-        hasMore={data.length < 10}
-        loader={<Skeleton avatar paragraph={{ rows: 1 }} active />}
-        endMessage={<Divider plain>It is all, nothing more 🤐</Divider>}
-        scrollableTarget="scrollableDiv"
-      >
-      
-        <List
-          dataSource={data}
-          renderItem={item => (
-            <List.Item key={item._id}  size="small">
-              <List.Item.Meta
-                title={item.tittle}
-                description={item.description}
-              />
-              <div>
-              <Button type="danger" shape="circle" icon={<DeleteOutlined />} size="large" />
-      </div>
-            </List.Item>
-          )}
-        />
-      </InfiniteScroll>
-    </div>
-  );
+  return <List>{items()}</List>;
 };
 
 export default TodoList;

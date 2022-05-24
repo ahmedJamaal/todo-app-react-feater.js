@@ -2,14 +2,10 @@ import React from 'react';
 import {
   Typography,
   Space,
-  Col, Row,
-  Divider
+ Divider
 } from 'antd';
 import './App.css';
-import TodoForm from './components/todo-form';
-import TodoList from './components/todo-list';
-import Todo from './pages/todo';
-
+import Todo from './components/todo'
 const { Title } = Typography;
 
 const App = () => (
@@ -31,18 +27,7 @@ const App = () => (
    <section style={{ textAlign: 'center', marginTop: 48, marginBottom: 40 }}>
    <Divider orientation="left">ToDo List</Divider>
   
-   <Row gutter={1}>
-      <Col className="gutter-row" span={9}>
-      
-      <TodoList />
-      </Col>
-      <Col className='gutter-row' space={1}>
-      <Divider type="vertical" style={{ height: "100%" }} />
-      </Col>
-      <Col span={14}>
-      <TodoForm/>
-      </Col>
-    </Row>
+      <Todo />
    </section>
    
   </>
