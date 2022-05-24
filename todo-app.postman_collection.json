@@ -1,0 +1,114 @@
+{
+	"info": {
+		"_postman_id": "bf175512-a266-4be5-9e67-e6a8c9d91ac5",
+		"name": "todo-app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get todo",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "delete todo by id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3030/todo/628a09599219d45290ae1de4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3030",
+					"path": [
+						"todo",
+						"628a09599219d45290ae1de4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get todo by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3030/todo/628a09599219d45290ae1de4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3030",
+					"path": [
+						"todo",
+						"628a09599219d45290ae1de4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add todo",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"tittle\":\"test heading\",\r\n    \"description\":\"this description test\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3030/todo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3030",
+					"path": [
+						"todo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update todo",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"tittle\":\"GYM Workout May\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3030/todo/628a09599219d45290ae1de4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3030",
+					"path": [
+						"todo",
+						"628a09599219d45290ae1de4"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
